@@ -14,7 +14,7 @@
 
 // Execute `rustlings hint hashmaps3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+
 
 use std::collections::HashMap;
 
@@ -35,6 +35,63 @@ fn build_scores_table(results: String) -> HashMap<String, Team> {
         let team_1_score: u8 = v[2].parse().unwrap();
         let team_2_name = v[1].to_string();
         let team_2_score: u8 = v[3].parse().unwrap();
+        // println!("{}",team_1_name );
+        // let team_1= scores.get(&team_1_name);
+            // let team_score_1= &team_1_score ;
+             let mut team_1:Team;
+             let mut team_2:Team;
+            if scores.contains_key( & team_1_name)
+            {
+               let x= scores.get(&team_1_name).unwrap();
+               let scr1 :u8= team_1_score +x.goals_scored;
+               let scr2 :u8= team_2_score +x.goals_conceded;
+ 
+                team_1= Team{
+            name: team_1_name.clone(),
+            goals_scored: scr1 ,
+            goals_conceded:scr2 , 
+            };
+                        println!("This fruits is based on hashmap_fruits.0000 {:?}",&team_1.goals_scored);
+
+            }else {
+                  team_1= Team{
+            name: team_1_name.clone(),
+            goals_scored: team_1_score ,
+            goals_conceded: team_2_score, 
+             };}
+            if scores.contains_key( & team_2_name)
+            {
+           
+            let y= scores.get(&team_2_name).unwrap();
+          println!("This fruits is based on hashmap_fruits. 2222222 {:?} {:?}",&team_2_score , &y.goals_scored);
+
+            let src1=team_2_score +y.goals_scored;
+            let src2=team_1_score +y.goals_conceded;
+
+            team_2= Team{
+            name: team_2_name.clone(),
+            goals_scored: src1,
+            goals_conceded: src2, 
+             };
+
+            }else {
+                  team_2= Team{
+            name: team_2_name.clone(),
+            goals_scored: team_2_score ,
+            goals_conceded: team_1_score, 
+            };
+            }
+         
+            //(scores.entry(team_1_name).or_insert(team_1)).goals_scored;
+        
+    
+        scores.insert(team_1_name,team_1);
+        scores.insert(team_2_name,team_2);
+                let team_ = scores.get("England").unwrap();
+                        println!("This fruits is based on hashmap_fruits.0000 {:?}",&team_.goals_scored);
+
+    //    let team__1= scores.entry(team_2_name).or_insert(team_2_goals).unwrap();
+
         // TODO: Populate the scores table with details extracted from the
         // current line. Keep in mind that goals scored by team_1
         // will be number of goals conceded from team_2, and similarly
